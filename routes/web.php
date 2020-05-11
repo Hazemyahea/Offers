@@ -1,5 +1,8 @@
 <?php
 
+use App\Gift;
+use App\Post;
+use App\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,9 +26,26 @@ Route::group(['prefix' => LaravelLocalization::setLocale()], function()
 {
     Route::get('/home', 'HomeController@index')->name('home');
 
-    Route::resource('/offers','OffersController');
+    Route::resource('/offers','OffersController')->middleware('CheckAge');
+
+    Route::get('/admin', function () {
+        return view('admin');
+    })->middleware('auth:admin');;
 
 
 });
 
 
+Route::get('/usergift', function () {
+  $user = User::whereDoesntHave('gift')->get();
+  return $user;
+
+    return view('welcome');
+});
+
+Route::get('/userposts', function () {
+    $post = Post::find(1);
+    return $post->user;
+
+
+});

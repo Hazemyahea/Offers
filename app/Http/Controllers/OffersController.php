@@ -38,19 +38,19 @@ class OffersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(OfferRequest $request)
+    public function store(Request $request)
     {
-        $file = $request->file('photo');
-
-        $file_name = time() . $file->getClientOriginalName();
-        $file->move('images/offers', $file_name);
+//        $file = $request->file('photo');
+//
+//        $file_name = time() . $file->getClientOriginalName();
+//        $file->move('images/offers', $file_name);
 
         $input = $request->all();
-        $input['photo'] = $file_name;
+        //$input['photo'] = $file_name;
 
         Offer::create($input);
 
-        return redirect()->back()->with(['success' =>__('global.success')]);
+//        return redirect()->back()->with(['success' =>__('global.success')]);
     }
 
     /**

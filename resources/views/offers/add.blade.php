@@ -7,7 +7,8 @@
 @if(Session::has('success'))
     <div class="alert alert-success container text-center">{{Session::get('success')}} </div>
     @endif
-{!! Form::open(['method' => 'POST','action' => 'OffersController@store','class'=>'container','enctype' => 'multipart/form-data']) !!}
+{!! Form::open(['method' => 'POST','action'=>'OffersController@store','class'=>'container','enctype' => 'multipart/form-data']) !!}
+{!! csrf_field() !!}
 <div class="form-group">
     {{ Form::label('title', 'title') }}
     {{ Form::text('title', null, ['class' => 'form-control'])}}
@@ -28,7 +29,11 @@
 </div>
 <div class="form-group">
 
-    {{ Form::submit('add offer', ['class' => 'btn btn-primary'])}}
+    <button id="add_offer">Click</button>
 </div>
 {!! Form::close() !!}
+@endsection
+
+@section('footer')
+
 @endsection
